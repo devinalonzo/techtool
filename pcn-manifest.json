@@ -1,0 +1,304 @@
+{
+  "updated": "2026-06-21",
+  "pump": [
+    {
+      "model": "PUMP APP",
+      "version": "01.3.40",
+      "file": "12101340.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12101340.exe",
+      "md5": "fac72eabe84f869ae8c399e0d692b368",
+      "bytes": 1144104
+    },
+    {
+      "model": "PUMP APP",
+      "version": "01.7.85",
+      "file": "12101785.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12101785.exe",
+      "md5": "cb11a6b177ec7ef34d5e91e4db085b5b",
+      "bytes": 1262760
+    },
+    {
+      "model": "PUMP APP",
+      "version": "01.8.00",
+      "file": "12101800.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12101800.exe",
+      "md5": "a577b8ac3c4577030c2a3a6fae8c18d0",
+      "bytes": 1274792
+    },
+    {
+      "model": "PUMP APP",
+      "version": "01.8.20",
+      "file": "12101820.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12101820.exe",
+      "md5": "d81852d618b23f6d1520dd18cdd6e0c2",
+      "bytes": 1281256
+    },
+    {
+      "model": "PUMP APP",
+      "version": "01.8.26",
+      "file": "12101826.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12101826.exe",
+      "md5": "f0dc7f676bf6806fb93fb548453d49f9",
+      "bytes": 1287336
+    },
+    {
+      "model": "PUMP APP",
+      "version": "01.8.30",
+      "file": "12101830.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12101830.exe",
+      "md5": "aa953f70969a71a14215ba0f28373e89",
+      "bytes": 1287336
+    },
+    {
+      "model": "PUMP APP",
+      "version": "01.8.32",
+      "file": "12101832.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12101832.exe",
+      "md5": "de12acdbdc27848ce7803078e7af85c3",
+      "bytes": 1289080
+    },
+    {
+      "model": "PUMP APP",
+      "version": "01.8.37",
+      "file": "12101837.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12101837.exe",
+      "md5": "ce5baee34ea95394a6223039c100375c",
+      "bytes": 1289656
+    },
+    {
+      "model": "PUMP APP",
+      "version": "01.8.40",
+      "file": "12101840.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12101840.exe",
+      "md5": "da4e6dc1433e45404736d56a27a7165e",
+      "bytes": 1289656
+    },
+    {
+      "model": "PUMP APP",
+      "version": "01.8.42",
+      "file": "12101842.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12101842.exe",
+      "md5": "04996a49bb73ad2dd63c752d6733a129",
+      "bytes": 1292808
+    },
+    {
+      "model": "PUMP APP",
+      "version": "01.8.60",
+      "file": "12101860.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12101860.exe",
+      "md5": "6bb1efd6d6e6773db4fe10d8e733ec63",
+      "bytes": 1300072
+    },
+    {
+      "model": "PUMP APP",
+      "version": "01.8.74",
+      "file": "12101874.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12101874.exe",
+      "md5": "3eeb14c2bff9867c8c3549b5ddd9e3f8",
+      "bytes": 1318184
+    },
+    {
+      "model": "PUMP APP",
+      "version": "01.8.79",
+      "file": "12101879.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12101879.exe",
+      "md5": "959a8261c33f7b3b1cfbae7f0de5126f",
+      "bytes": 1317736
+    },
+    {
+      "model": "PUMP APP",
+      "version": "02.8.30",
+      "file": "12102830.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12102830.exe",
+      "md5": "ddff69b5347ef0dc7029316c37b5a9a7",
+      "bytes": 1284360
+    },
+    {
+      "model": "PUMP APP",
+      "version": "02.8.60",
+      "file": "12102860.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12102860.exe",
+      "md5": "a1ec4fa55e587ab489806f41c5cf8f2d",
+      "bytes": 1297496
+    },
+    {
+      "model": "PUMP APP",
+      "version": "02.8.74",
+      "file": "12102874.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12102874.exe",
+      "md5": "a52830124cab0ead1deab66b70e103fc",
+      "bytes": 1316328
+    },
+    {
+      "model": "PUMP APP",
+      "version": "02.8.86",
+      "file": "12102886.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12102886.exe",
+      "md5": "ca097f8375ebd8bfcaa6841c57314b7c",
+      "bytes": 1296472
+    },
+    {
+      "model": "PUMP APP",
+      "version": "02.9.06",
+      "file": "12102906.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12102906.exe",
+      "md5": "d7ffb1c3c04a9161ad7221f166d4cd25",
+      "bytes": 1299944
+    },
+    {
+      "model": "PUMP APP",
+      "version": "02.9.12",
+      "file": "12102912.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12102912.exe",
+      "md5": "aaae792f346eda9be19af36d90ee25e2",
+      "bytes": 1292840
+    },
+    {
+      "model": "PUMP APP",
+      "version": "02.9.23",
+      "file": "12102923.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12102923.exe",
+      "md5": "955b66410a0de650410b69d52a4ea2bf",
+      "bytes": 1292952
+    },
+    {
+      "model": "PUMP APP",
+      "version": "02.9.72",
+      "file": "12102972.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12102972.exe",
+      "md5": "8cbe9cef44ca27441873cbfe4f483e11",
+      "bytes": 1285032
+    },
+    {
+      "model": "PUMP APP",
+      "version": "02.9.76",
+      "file": "12102976.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12102976.exe",
+      "md5": "792d2243f0d2b40ffc524b4f67b55d48",
+      "bytes": 1286216
+    },
+    {
+      "model": "PUMP APP",
+      "version": "02.9.80",
+      "file": "12102980.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12102980.exe",
+      "md5": "729576713497c196a773063817489bfb",
+      "bytes": 1287752
+    },
+    {
+      "model": "PUMP APP",
+      "version": "02.9.81",
+      "file": "12102981.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12102981.exe",
+      "md5": "a9d307d28153fffa0e00d3e5e2a3290e",
+      "bytes": 1286984
+    },
+    {
+      "model": "PUMP APP",
+      "version": "03.0.01",
+      "file": "12103001.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12103001.exe",
+      "md5": "9d3bb9471f5b74bade474cb0fc43b350",
+      "bytes": 1287528
+    },
+    {
+      "model": "PUMP APP",
+      "version": "03.0.31",
+      "file": "12103031.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12103031.exe",
+      "md5": "3c88122680219b43c011f9e8add5383e",
+      "bytes": 1313368
+    },
+    {
+      "model": "PUMP APP",
+      "version": "03.0.35",
+      "file": "12103035.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12103035.exe",
+      "md5": "ac8a8cd8df5fbbd2228afbc8e8d4989c",
+      "bytes": 1270808
+    },
+    {
+      "model": "PUMP APP",
+      "version": "04.1.30",
+      "file": "12104130.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12104130.exe",
+      "md5": "3f1035ffa9977b6c07746740fa8f60f1",
+      "bytes": 1448056
+    },
+    {
+      "model": "PUMP APP",
+      "version": "06.0.36",
+      "file": "12106036.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12106036.exe",
+      "md5": "267b2231064d449ee2ce8ade6266693d",
+      "bytes": 1822628
+    },
+    {
+      "model": "PUMP APP",
+      "version": "06.0.38",
+      "file": "12106038.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12106038.exe",
+      "md5": "03652228590fb2c60032a52bb5cf523e",
+      "bytes": 1824436
+    },
+    {
+      "model": "PUMP APP",
+      "version": "06.0.45",
+      "file": "12106045.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12106045.exe",
+      "md5": "e744c8975403cf385d45340bf5d3c0ab",
+      "bytes": 1841044
+    },
+    {
+      "model": "PUMP APP",
+      "version": "06.0.52",
+      "file": "12106052.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/12106052.exe",
+      "md5": "38d5601879bb06f2809465d22db3be41",
+      "bytes": 1841924
+    },
+    {
+      "model": "PUMP APP",
+      "version": "P04031",
+      "file": "P04031.exe",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pcn%20software/P04031.exe",
+      "md5": "b7ce005a455e3be6640617864fa667dd",
+      "bytes": 1379720
+    }
+  ],
+  "docs": [
+    {
+      "mde": "MDE-3804",
+      "rev": "Q",
+      "title": "MDE-3804Q Encore® and Eclipse® Start-up/Service Manual",
+      "file": "MDE-3804 Encore and Eclipse Start-up Service Manual.pdf",
+      "url": "https://devinalonzo.github.io/techtool/docs/MDE-3804%20Encore%20and%20Eclipse%20Start-up%20Service%20Manual.pdf"
+    },
+    {
+      "mde": "MDE-3860",
+      "rev": "AQ",
+      "title": "MDE-3860AQ Programming Quick Reference Guide",
+      "file": "MDE-3860 Programming Quick Reference Guide.pdf",
+      "url": "https://devinalonzo.github.io/techtool/docs/MDE-3860%20Programming%20Quick%20Reference%20Guide.pdf"
+    },
+    {
+      "mde": "MDE-4281",
+      "rev": "N",
+      "title": "MDE-4281N Calibration Quick Reference Card",
+      "file": "MDE-4281 Calibration Quick Reference Card.pdf",
+      "url": "https://devinalonzo.github.io/techtool/docs/MDE-4281%20Calibration%20Quick%20Reference%20Card.pdf"
+    },
+    {
+      "mde": "MDE-3921",
+      "rev": "E",
+      "title": "MDE-3921E Laptop Tool User Reference Guide",
+      "file": "MDE-3921 Laptop Tool User Reference Guide.pdf",
+      "url": "https://devinalonzo.github.io/techtool/docs/MDE-3921%20Laptop%20Tool%20User%20Reference%20Guide.pdf"
+    },
+    {
+      "title": "Encore Error Codes",
+      "file": "Encore Error Codes.pdf",
+      "url": "https://raw.githubusercontent.com/devinalonzo/techtool/main/pump%20docs/Encore%20Error%20Codes.pdf"
+    }
+  ]
+}

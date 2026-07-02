@@ -1,0 +1,36 @@
+{
+  "latest": {
+    "versionCode": 30,
+    "versionName": "1.9.0",
+    "apk": "techtool.apk",
+    "url": "https://github.com/devinalonzo/techtool/raw/main/techtool.apk",
+    "notes": "Security: requests to the office are now cryptographically signed per device, so another phone can no longer send requests pretending to be you. Please update — older versions will stop being able to reach the office after this rolls out."
+  },
+  "history": [
+    { "versionCode": 30, "versionName": "1.9.0", "date": "2026-07-01" },
+    { "versionCode": 29, "versionName": "1.8.2", "date": "2026-06-28" },
+    { "versionCode": 28, "versionName": "1.8.1", "date": "2026-06-27" },
+    { "versionCode": 27, "versionName": "1.8.0", "date": "2026-06-26" },
+    { "versionCode": 26, "versionName": "1.7.1", "date": "2026-06-26" },
+    { "versionCode": 25, "versionName": "1.7.0", "date": "2026-06-24" },
+    { "versionCode": 24, "versionName": "1.6.16", "date": "2026-06-24" },
+    { "versionCode": 23, "versionName": "1.6.15", "date": "2026-06-24" },
+    { "versionCode": 22, "versionName": "1.6.14", "date": "2026-06-23" },
+    { "versionCode": 21, "versionName": "1.6.13", "date": "2026-06-23" },
+    { "versionCode": 20, "versionName": "1.6.12", "date": "2026-06-23" },
+    { "versionCode": 19, "versionName": "1.6.11", "date": "2026-06-21" },
+    { "versionCode": 18, "versionName": "1.6.10", "date": "2026-06-21" },
+    { "versionCode": 17, "versionName": "1.6.9", "date": "2026-06-21" },
+    { "versionCode": 16, "versionName": "1.6.8", "date": "2026-06-21" },
+    { "versionCode": 15, "versionName": "1.6.7", "date": "2026-06-21" },
+    { "versionCode": 14, "versionName": "1.6.6", "date": "2026-06-21" },
+    { "versionCode": 13, "versionName": "1.6.5", "date": "2026-06-21" },
+    { "versionCode": 12, "versionName": "1.6.4", "date": "2026-06-20" },
+    { "versionCode": 11, "versionName": "1.6.3", "date": "2026-06-20" },
+    { "versionCode": 10, "versionName": "1.6.2", "date": "2026-06-20" },
+    { "versionCode": 9, "versionName": "1.6.1", "date": "2026-06-20" },
+    { "versionCode": 8, "versionName": "1.6.0", "date": "2026-06-20" },
+    { "versionCode": 7, "versionName": "1.5.0", "date": "2026-06-20" },
+    { "versionCode": 5, "versionName": "1.4.0", "date": "2026-06-20" }
+  ]
+}
