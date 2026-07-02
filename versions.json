@@ -1,12 +1,13 @@
 {
   "latest": {
-    "versionCode": 30,
-    "versionName": "1.9.0",
+    "versionCode": 31,
+    "versionName": "1.9.1",
     "apk": "techtool.apk",
     "url": "https://github.com/devinalonzo/techtool/raw/main/techtool.apk",
-    "notes": "Security: requests to the office are now cryptographically signed per device, so another phone can no longer send requests pretending to be you. Please update — older versions will stop being able to reach the office after this rolls out."
+    "notes": "Pump error code lookup now matches the website — keypad, dispenser type filter, and instant results."
   },
   "history": [
+    { "versionCode": 31, "versionName": "1.9.1", "date": "2026-07-01" },
     { "versionCode": 30, "versionName": "1.9.0", "date": "2026-07-01" },
     { "versionCode": 29, "versionName": "1.8.2", "date": "2026-06-28" },
     { "versionCode": 28, "versionName": "1.8.1", "date": "2026-06-27" },
