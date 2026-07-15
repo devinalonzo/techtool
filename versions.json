@@ -1,12 +1,17 @@
 {
   "latest": {
-    "versionCode": 64,
-    "versionName": "1.9.34",
+    "versionCode": 66,
+    "versionName": "1.9.36",
     "apk": "techtool.apk",
     "url": "https://github.com/devinalonzo/techtool/raw/main/techtool.apk",
-    "notes": "Faster, steadier software downloads, a UPM software manager, and a Debit Key lookup. Please update."
+    "notes": "Fixes a rotation crash, adds TLS Serial and Hash for support calls, and steadier software downloads. Please update."
   },
   "history": [
+    {
+      "versionCode": 66,
+      "versionName": "1.9.36",
+      "date": "2026-07-15"
+    },
     {
       "versionCode": 64,
       "versionName": "1.9.34",
