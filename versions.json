@@ -1,12 +1,17 @@
 {
     "latest":  {
-                   "versionCode":  68,
-                   "versionName":  "1.9.38",
+                   "versionCode":  69,
+                   "versionName":  "1.9.39",
                    "apk":  "techtool.apk",
                    "url":  "https://github.com/devinalonzo/techtool/raw/main/techtool.apk",
-                   "notes":  "Barcode scanning improvements - please update."
+                   "notes":  "Warranty photos load faster - please update."
                },
     "history":  [
+                    {
+                        "versionCode":  69,
+                        "versionName":  "1.9.39",
+                        "date":  "2026-07-15"
+                    },
                     {
                         "versionCode":  68,
                         "versionName":  "1.9.38",
