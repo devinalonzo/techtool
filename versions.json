@@ -1,12 +1,17 @@
 {
     "latest":  {
-                   "versionCode":  74,
-                   "versionName":  "1.9.44",
+                   "versionCode":  75,
+                   "versionName":  "1.9.45",
                    "apk":  "techtool.apk",
                    "url":  "https://github.com/devinalonzo/techtool/raw/main/techtool.apk",
-                   "notes":  "Mileage Tracker and GPS Warranty tabs. Veeder Root removed."
+                   "notes":  "Auto detect site from GPS."
                },
     "history":  [
+                    {
+                        "versionCode":  75,
+                        "versionName":  "1.9.45",
+                        "date":  "2026-07-20"
+                    },
                     {
                         "versionCode":  74,
                         "versionName":  "1.9.44",
