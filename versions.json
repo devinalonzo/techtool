@@ -1,12 +1,17 @@
 {
     "latest":  {
-                   "versionCode":  70,
-                   "versionName":  "1.9.40",
+                   "versionCode":  74,
+                   "versionName":  "1.9.44",
                    "apk":  "techtool.apk",
                    "url":  "https://github.com/devinalonzo/techtool/raw/main/techtool.apk",
-                   "notes":  "Serial scanning improvements - please update."
+                   "notes":  "Mileage Tracker and GPS Warranty tabs. Veeder Root removed."
                },
     "history":  [
+                    {
+                        "versionCode":  74,
+                        "versionName":  "1.9.44",
+                        "date":  "2026-07-20"
+                    },
                     {
                         "versionCode":  70,
                         "versionName":  "1.9.40",

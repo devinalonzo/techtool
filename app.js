@@ -137,7 +137,13 @@ async function connect() {
         return;
       }
       if (topic === T.cfg) {
-        const canon = `cfg\n${j.ts}\n${j.onCallAllowed === true}`;
+        // Two generations (src/server-sign.js cfgCanonical): "cfg" (On Call only) and "cfg2"
+        // once the mileage/gpswt flags exist. The PWA only enforces On Call (the new flags gate
+        // Android-only tabs: BLE + foreground GPS aren't available in a browser).
+        const v2 = j.mileageAllowed !== undefined || j.gpswtAllowed !== undefined;
+        const canon = v2
+          ? `cfg2\n${j.ts}\n${j.onCallAllowed === true}\n${j.mileageAllowed === true}\n${j.gpswtAllowed === true}`
+          : `cfg\n${j.ts}\n${j.onCallAllowed === true}`;
         if (!j.ssig || !(await verifyServerSig(SERVER_SIGN_PUBKEY, canon, j.ssig))) return;
         if (j.onCallAllowed !== undefined) applyOnCallAllowed(j.onCallAllowed);
         return;
