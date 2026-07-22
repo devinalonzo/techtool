@@ -1,12 +1,17 @@
 {
     "latest":  {
-                   "versionCode":  75,
-                   "versionName":  "1.9.45",
+                   "versionCode":  76,
+                   "versionName":  "1.9.46",
                    "apk":  "techtool.apk",
                    "url":  "https://github.com/devinalonzo/techtool/raw/main/techtool.apk",
-                   "notes":  "Auto detect site from GPS."
+                   "notes":  "GPS dash stability fixes."
                },
     "history":  [
+                    {
+                        "versionCode":  76,
+                        "versionName":  "1.9.46",
+                        "date":  "2026-07-22"
+                    },
                     {
                         "versionCode":  75,
                         "versionName":  "1.9.45",
