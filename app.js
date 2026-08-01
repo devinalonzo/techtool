@@ -140,12 +140,18 @@ async function connect() {
         // Two generations (src/server-sign.js cfgCanonical): "cfg" (On Call only) and "cfg2"
         // once the mileage/gpswt flags exist. The PWA only enforces On Call (the new flags gate
         // Android-only tabs: BLE + foreground GPS aren't available in a browser).
+        const v3 = j.visionAllowed === true; // only cfg3 when My Day is actually on (see server-sign.js)
         const v2 = j.mileageAllowed !== undefined || j.gpswtAllowed !== undefined;
-        const canon = v2
+        const canon = v3
+          ? `cfg3\n${j.ts}\n${j.onCallAllowed === true}\n${j.mileageAllowed === true}\n${j.gpswtAllowed === true}\n${j.visionAllowed === true}`
+          : v2
           ? `cfg2\n${j.ts}\n${j.onCallAllowed === true}\n${j.mileageAllowed === true}\n${j.gpswtAllowed === true}`
           : `cfg\n${j.ts}\n${j.onCallAllowed === true}`;
         if (!j.ssig || !(await verifyServerSig(SERVER_SIGN_PUBKEY, canon, j.ssig))) return;
         if (j.onCallAllowed !== undefined) applyOnCallAllowed(j.onCallAllowed);
+        // My Day is a PWA feature too, so the PWA enforces visionAllowed (unlike the Android-only
+        // mileage/gpswt flags). Defaults OFF until the server enables it for this tech.
+        if (j.visionAllowed !== undefined) applyVisionAllowed(j.visionAllowed);
         return;
       }
       // A res reply (on our res topic, or the reg onboarding channel) must verify against the
@@ -177,6 +183,8 @@ async function connect() {
       // Unlink button — mirrors Android's MainActivity.doReset, which the PWA never had. The body
       // only reaches here after the server-signature check above, so it can't be forged.
       if (/^RESET$/i.test(body.trim())) { await doRemoteReset(); return; }
+      // My Day (Vision) replies drive the My Day card, not the generic reply box.
+      if (/^(MYDAY|VISION OK|VISION FAIL)/i.test(body)) { handleMyDayReply(body); return; }
       if (body) showReply(body);
     } catch { /* unreadable message */ }
   });
@@ -324,6 +332,74 @@ function applyOnCallAllowed(allowed) {
   LS.set('oncall_allowed', allowed ? '1' : '0');
   const card = $('#oncallCard');
   if (card) card.style.display = allowed ? '' : 'none';
+}
+
+// ---- My Day (Vision RFS assigned calls) ----
+let mdJobs = [];        // last MYDAY-OK jobs
+let mdDay = 0;          // -1 yesterday, 0 today, +1 tomorrow (default today)
+// Show/hide the My Day card per the server's per-tech permission (cfg3 visionAllowed). Default OFF
+// (opt-in), persisted so a denied tech doesn't flash the card before MQTT connects.
+function applyVisionAllowed(allowed) {
+  LS.set('vision_allowed', allowed ? '1' : '0');
+  const card = $('#myDayCard');
+  if (card) card.style.display = allowed ? '' : 'none';
+}
+
+const mdIso = (offset) => { const d = new Date(); d.setDate(d.getDate() + offset); return isoOf(d); };
+const mdMdy = (offset) => { const d = new Date(); d.setDate(d.getDate() + offset); return `${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}/${d.getFullYear()}`; };
+
+function sendMyDay(refresh) { sendRequest('MYDAY' + (refresh ? ' REFRESH' : '')); }
+
+function promptVisionLink() {
+  const code = prompt('Vision technician code:', LS.get('vision_code') || '');
+  if (!code) return;
+  const pass = prompt('Vision password (your login, not the 4-digit app PIN):');
+  if (!pass) return;
+  LS.set('vision_code', code.trim());
+  const nonce = String(Date.now() % 100000);
+  sendRequest(`VISION ${code.trim()} ${pass.trim()} ${nonce}`);
+  const list = $('#md_list'); if (list) { list.className = 'muted'; list.textContent = 'Verifying your Vision login…'; }
+}
+
+function handleMyDayReply(body) {
+  const list = $('#md_list');
+  if (/^VISION OK/i.test(body)) { if (list) { list.className = 'muted'; list.textContent = 'Vision linked. Loading your day…'; } sendMyDay(true); return; }
+  if (/^VISION FAIL/i.test(body)) { if (list) { list.className = 'muted'; list.textContent = 'Vision link failed: ' + body.replace(/^VISION FAIL\s*-?\s*/i, ''); } return; }
+  if (/^MYDAY-WAIT/i.test(body)) { if (list) { list.className = 'muted'; list.textContent = 'Loading your day from the office…'; } return; }
+  if (/^MYDAY-ERR/i.test(body)) { if (list) { list.className = 'muted'; list.textContent = 'Could not load your day: ' + body.replace(/^MYDAY-ERR\s*/i, ''); } return; }
+  if (/^MYDAY-OK/i.test(body)) {
+    try { const j = JSON.parse(body.replace(/^MYDAY-OK\s*/i, '')); mdJobs = Array.isArray(j.jobs) ? j.jobs : []; }
+    catch { mdJobs = []; }
+    try { localStorage.setItem('tt_myday', JSON.stringify(mdJobs)); } catch { /* quota */ }
+    renderMyDay();
+  }
+}
+
+function renderMyDay() {
+  const list = $('#md_list'); if (!list) return;
+  const iso = mdIso(mdDay), mdy = mdMdy(mdDay);
+  const rows = mdJobs.filter((c) => c && (c.schedDay === iso || c.scheduledDate === mdy));
+  const label = { '-1': 'yesterday', '0': 'today', '1': 'tomorrow' }[String(mdDay)];
+  if (!rows.length) { list.className = 'muted'; list.textContent = 'No calls for ' + label + '.'; return; }
+  list.className = '';
+  list.innerHTML = rows.map((c) => `<div style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+      <div style="font-weight:600">${esc((c.startTime ? c.startTime + '  ' : '') + (c.customer || '?'))}</div>
+      <div class="muted" style="font-size:13px">${esc([c.address, c.city, c.state, c.zip].filter(Boolean).join(', '))}</div>
+      <div class="muted" style="font-size:12.5px">${esc([c.callType, 'WO ' + (c.workOrder || ''), c.status].filter(Boolean).join('  ·  '))}</div>
+    </div>`).join('');
+}
+
+function initMyDay() {
+  const on = (id, fn) => { const el = $('#' + id); if (el) el.onclick = fn; };
+  on('md_link', promptVisionLink);
+  on('md_refresh', () => sendMyDay(true));
+  on('md_yest', () => { mdDay = -1; renderMyDay(); });
+  on('md_today', () => { mdDay = 0; renderMyDay(); });
+  on('md_tom', () => { mdDay = 1; renderMyDay(); });
+  try { const c = localStorage.getItem('tt_myday'); if (c) mdJobs = JSON.parse(c) || []; } catch { /* */ }
+  applyVisionAllowed(LS.get('vision_allowed') === '1'); // default OFF; cfg3 updates it live
+  renderMyDay();
+  if (LS.get('vision_code')) sendMyDay(false); // linked already -> pull the day
 }
 
 function renderOnCall() {
@@ -476,6 +552,7 @@ function showApp() {
   $('#main').style.display = 'block';
   $('#me').textContent = myDigits;
   initPumpCodes();
+  initMyDay();
   applyOnCallAllowed(LS.get('oncall_allowed') !== '0'); // default allowed; cfg topic updates it live
   // Show the last schedule instantly (retained MQTT message refreshes it on connect).
   try { const c = LS.get('oncall'); if (c) ocSched = JSON.parse(c); } catch { /* */ }

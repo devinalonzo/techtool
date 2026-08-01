@@ -149,6 +149,21 @@
       <div id="oc_list" style="margin-top:12px" class="muted">Waiting for the schedule…</div>
     </div>
 
+    <div class="card" id="myDayCard" style="display:none">
+      <h3>My Day</h3>
+      <p class="muted">Your assigned service calls: where you're going and what for.</p>
+      <div class="row" style="gap:8px">
+        <button class="alt" id="md_link" style="margin:0">Link Vision login</button>
+        <button id="md_refresh" style="margin:0">Refresh</button>
+      </div>
+      <div class="row" style="gap:6px;margin-top:8px">
+        <button class="alt" id="md_yest" style="margin:0">Yesterday</button>
+        <button id="md_today" style="margin:0">Today</button>
+        <button class="alt" id="md_tom" style="margin:0">Tomorrow</button>
+      </div>
+      <div id="md_list" style="margin-top:12px" class="muted">Link your Vision login to see your day.</div>
+    </div>
+
     <div class="card">
       <div class="row"><span class="muted" style="flex:1">Signed in as <b id="me"></b></span></div>
       <button id="unlink" class="alt">Unlink this device</button>
