@@ -378,8 +378,11 @@ function handleMyDayReply(body) {
 function renderMyDay() {
   const list = $('#md_list'); if (!list) return;
   const iso = mdIso(mdDay), mdy = mdMdy(mdDay);
+  const d = new Date(); d.setDate(d.getDate() + mdDay);
+  const rel = mdDay === 0 ? 'Today' : mdDay === -1 ? 'Yesterday' : mdDay === 1 ? 'Tomorrow' : null;
+  const label = rel ? rel + '  ·  ' + niceDate(d) : niceDate(d);
+  const dateEl = $('#md_date'); if (dateEl) dateEl.textContent = label;
   const rows = mdJobs.filter((c) => c && (c.schedDay === iso || c.scheduledDate === mdy));
-  const label = { '-1': 'yesterday', '0': 'today', '1': 'tomorrow' }[String(mdDay)];
   if (!rows.length) { list.className = 'muted'; list.textContent = 'No calls for ' + label + '.'; return; }
   list.className = '';
   list.innerHTML = rows.map((c) => `<div style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08)">
@@ -393,9 +396,9 @@ function initMyDay() {
   const on = (id, fn) => { const el = $('#' + id); if (el) el.onclick = fn; };
   on('md_link', promptVisionLink);
   on('md_refresh', () => sendMyDay(true));
-  on('md_yest', () => { mdDay = -1; renderMyDay(); });
+  on('md_prev', () => { mdDay--; renderMyDay(); });
+  on('md_next', () => { mdDay++; renderMyDay(); });
   on('md_today', () => { mdDay = 0; renderMyDay(); });
-  on('md_tom', () => { mdDay = 1; renderMyDay(); });
   try { const c = localStorage.getItem('tt_myday'); if (c) mdJobs = JSON.parse(c) || []; } catch { /* */ }
   applyVisionAllowed(LS.get('vision_allowed') === '1'); // default OFF; cfg3 updates it live
   renderMyDay();
