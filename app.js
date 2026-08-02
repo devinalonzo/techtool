@@ -350,12 +350,21 @@ const mdMdy = (offset) => { const d = new Date(); d.setDate(d.getDate() + offset
 
 function sendMyDay(refresh) { sendRequest('MYDAY' + (refresh ? ' REFRESH' : '')); }
 
+// Show the big "Link" button only until linked; a small "Re-link" appears once linked.
+function refreshLinkUi() {
+  const linked = !!LS.get('vision_code');
+  const l = $('#md_link'), r = $('#md_relink');
+  if (l) l.style.display = linked ? 'none' : '';
+  if (r) r.style.display = linked ? '' : 'none';
+}
+
 function promptVisionLink() {
   const code = prompt('Vision technician code:', LS.get('vision_code') || '');
   if (!code) return;
   const pass = prompt('Vision password (your login, not the 4-digit app PIN):');
   if (!pass) return;
   LS.set('vision_code', code.trim());
+  refreshLinkUi();
   const nonce = String(Date.now() % 100000);
   sendRequest(`VISION ${code.trim()} ${pass.trim()} ${nonce}`);
   const list = $('#md_list'); if (list) { list.className = 'muted'; list.textContent = 'Verifying your Vision login…'; }
@@ -363,7 +372,7 @@ function promptVisionLink() {
 
 function handleMyDayReply(body) {
   const list = $('#md_list');
-  if (/^VISION OK/i.test(body)) { if (list) { list.className = 'muted'; list.textContent = 'Vision linked. Loading your day…'; } sendMyDay(true); return; }
+  if (/^VISION OK/i.test(body)) { refreshLinkUi(); if (list) { list.className = 'muted'; list.textContent = 'Vision linked. Loading your day…'; } sendMyDay(true); return; }
   if (/^VISION FAIL/i.test(body)) { if (list) { list.className = 'muted'; list.textContent = 'Vision link failed: ' + body.replace(/^VISION FAIL\s*-?\s*/i, ''); } return; }
   if (/^MYDAY-WAIT/i.test(body)) { if (list) { list.className = 'muted'; list.textContent = 'Loading your day from the office…'; } return; }
   if (/^MYDAY-ERR/i.test(body)) { if (list) { list.className = 'muted'; list.textContent = 'Could not load your day: ' + body.replace(/^MYDAY-ERR\s*/i, ''); } return; }
@@ -395,12 +404,14 @@ function renderMyDay() {
 function initMyDay() {
   const on = (id, fn) => { const el = $('#' + id); if (el) el.onclick = fn; };
   on('md_link', promptVisionLink);
+  on('md_relink', promptVisionLink);
   on('md_refresh', () => sendMyDay(true));
   on('md_prev', () => { mdDay--; renderMyDay(); });
   on('md_next', () => { mdDay++; renderMyDay(); });
   on('md_today', () => { mdDay = 0; renderMyDay(); });
   try { const c = localStorage.getItem('tt_myday'); if (c) mdJobs = JSON.parse(c) || []; } catch { /* */ }
   applyVisionAllowed(LS.get('vision_allowed') === '1'); // default OFF; cfg3 updates it live
+  refreshLinkUi();
   renderMyDay();
   if (LS.get('vision_code')) sendMyDay(false); // linked already -> pull the day
 }
