@@ -99,6 +99,25 @@
   </section>
 
   <section id="main" style="display:none">
+    <div class="card" id="myDayCard" style="display:none">
+      <h3>Work Orders</h3>
+      <p class="muted">Your assigned service calls: where you're going and what for.</p>
+      <div class="row" style="gap:8px">
+        <button class="alt" id="md_link" style="margin:0">Link Vision login</button>
+        <button id="md_refresh" style="margin:0">Refresh</button>
+      </div>
+      <div class="row" style="gap:6px;margin-top:8px">
+        <button class="alt" id="md_prev" style="width:auto;margin:0;padding:10px 14px">◀</button>
+        <div id="md_date" style="flex:1;text-align:center;font-weight:600"></div>
+        <button class="alt" id="md_next" style="width:auto;margin:0;padding:10px 14px">▶</button>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <button class="alt" id="md_today" style="margin:0">Today</button>
+      </div>
+      <div id="md_list" style="margin-top:12px" class="muted">Link your Vision login to see your day.</div>
+      <button class="alt" id="md_relink" style="display:none;margin-top:12px">Re-link Vision login</button>
+    </div>
+
     <div class="card">
       <h3>New activation</h3>
       <p class="muted">Input the DeviceSerial ChallengeCode Check then click send.</p>
@@ -147,25 +166,6 @@
         <button id="oc_mine" style="margin:0">My Schedule</button>
       </div>
       <div id="oc_list" style="margin-top:12px" class="muted">Waiting for the schedule…</div>
-    </div>
-
-    <div class="card" id="myDayCard" style="display:none">
-      <h3>My Day</h3>
-      <p class="muted">Your assigned service calls: where you're going and what for.</p>
-      <div class="row" style="gap:8px">
-        <button class="alt" id="md_link" style="margin:0">Link Vision login</button>
-        <button id="md_refresh" style="margin:0">Refresh</button>
-      </div>
-      <div class="row" style="gap:6px;margin-top:8px">
-        <button class="alt" id="md_prev" style="width:auto;margin:0;padding:10px 14px">◀</button>
-        <div id="md_date" style="flex:1;text-align:center;font-weight:600"></div>
-        <button class="alt" id="md_next" style="width:auto;margin:0;padding:10px 14px">▶</button>
-      </div>
-      <div class="row" style="margin-top:8px">
-        <button class="alt" id="md_today" style="margin:0">Today</button>
-      </div>
-      <div id="md_list" style="margin-top:12px" class="muted">Link your Vision login to see your day.</div>
-      <button class="alt" id="md_relink" style="display:none;margin-top:12px">Re-link Vision login</button>
     </div>
 
     <div class="card">
