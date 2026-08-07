@@ -3,7 +3,7 @@
 // though the PWA never captures codes, push could surface activation results/alerts.
 // (ASCII-only comments: scripts/release.ps1 rewrites this file through PS 5.1, which mangles
 // any non-ASCII character on the way through.)
-const CACHE = 'techtool-pwa-v77';
+const CACHE = 'techtool-pwa-v78';
 const SHELL = ['./', './index.html', './app.js', './webcrypto.js', './manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {

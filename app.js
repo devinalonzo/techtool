@@ -580,6 +580,10 @@ function showPending(title, msg, retryable) {
   $('#p_title').textContent = title;
   $('#p_msg').textContent = msg || '';
   $('#p_retry').style.display = retryable ? 'block' : 'none';
+  // A mistyped access code used to trap the device here forever: provision() stores the
+  // derived login BEFORE the broker ever validates it, and setup only shows when nothing is
+  // stored. Offer a clean restart back to the number + access code form.
+  $('#p_reset').style.display = retryable ? 'block' : 'none';
 }
 
 // The gate the PWA was missing entirely before this fix: connect, ask the office for this
@@ -641,6 +645,7 @@ window.addEventListener('DOMContentLoaded', () => {
     catch (e) { $('#s_err').textContent = e.message; }
   });
   $('#p_retry').addEventListener('click', onboard);
+  $('#p_reset').addEventListener('click', async () => { LS.clear(); await clearWrapKey(); location.reload(); });
 
   $('#send').addEventListener('click', () => {
     const v = $('#req').value.trim();
