@@ -176,6 +176,21 @@ async function connect() {
       // arrive after the first resolved.
       const m = /^STATUS\s+(\S+)/.exec(body);
       if (m) {
+        // A bootstrap-cred device never receives the retained cfg topic (its ACL covers only
+        // svc/reg/#), so an approved STATUS carries the per-tech feature flags — apply them here.
+        // The cfg topic still updates live once this device runs on its own credential.
+        if (m[1] === 'approved') {
+          const oc = /\boncall=([01])\b/.exec(body);
+          if (oc) applyOnCallAllowed(oc[1] === '1');
+          const vi = /\bvision=([01])\b/.exec(body);
+          if (vi) applyVisionAllowed(vi[1] === '1');
+          // Allowed and no schedule stream: pull it once per session (the retained broadcast
+          // can't reach a bootstrap device; on the pdc path this is a harmless duplicate).
+          if (oc && oc[1] === '1' && !ocFetched) {
+            ocFetched = true;
+            publishSigned('ONCALL').catch(() => { ocFetched = false; /* next STATUS retries */ });
+          }
+        }
         if (statusResolve) { const r = statusResolve; statusResolve = null; r(m[1]); }
         return;
       }
@@ -183,6 +198,8 @@ async function connect() {
       // Unlink button — mirrors Android's MainActivity.doReset, which the PWA never had. The body
       // only reaches here after the server-signature check above, so it can't be forged.
       if (/^RESET$/i.test(body.trim())) { await doRemoteReset(); return; }
+      // On Call schedule pull reply (bootstrap-channel substitute for the retained broadcast).
+      if (/^ONCALL/i.test(body)) { handleOnCallReply(body); return; }
       // My Day (Vision) replies drive the My Day card, not the generic reply box.
       if (/^(MYDAY|VISION OK|VISION FAIL)/i.test(body)) { handleMyDayReply(body); return; }
       if (body) showReply(body);
@@ -324,6 +341,17 @@ function setOnCall(schedule) {
   ocSched = schedule;
   try { localStorage.setItem('tt_oncall', JSON.stringify(schedule)); } catch { /* quota */ }
   renderOnCall();
+}
+
+// One schedule pull per session while on the bootstrap credential (see the STATUS handler).
+let ocFetched = false;
+// "ONCALL <schedule-json>" reply — the pull-based twin of the retained oncall broadcast.
+// Already server-signature-verified (and ECIES-decrypted) by the reply pipeline above.
+function handleOnCallReply(body) {
+  const payload = body.replace(/^ONCALL\s*/i, '').trim();
+  if (payload === 'DENIED') { applyOnCallAllowed(false); return; }
+  if (!payload || payload === 'NONE') return;
+  try { setOnCall(JSON.parse(payload)); } catch { /* malformed — keep the cached schedule */ }
 }
 
 // Show/hide the whole On Call card per the server's per-tech permission (svc/cfg).
@@ -567,7 +595,11 @@ function showApp() {
   $('#me').textContent = myDigits;
   initPumpCodes();
   initMyDay();
-  applyOnCallAllowed(LS.get('oncall_allowed') !== '0'); // default allowed; cfg topic updates it live
+  // Default HIDDEN until the server's signed cfg explicitly allows it (mirrors My Day). A fresh
+  // device can't have received cfg yet — showing the card by default leaks an empty On Call
+  // section to techs the console has unchecked. The server publishes retained cfg at approve
+  // (main.js approveUser), so allowed techs get the card the moment cfg arrives.
+  applyOnCallAllowed(LS.get('oncall_allowed') === '1');
   // Show the last schedule instantly (retained MQTT message refreshes it on connect).
   try { const c = LS.get('oncall'); if (c) ocSched = JSON.parse(c); } catch { /* */ }
   renderOnCall();
